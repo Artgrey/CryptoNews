@@ -54,14 +54,9 @@ struct HomeView: View {
                 SettingsView()
             })
         }
-        .background(
-            NavigationStack {
-                EmptyView()
-                .navigationDestination(isPresented: $showDetailView) {
-                    DetailLoadingView(coin: $selectedCoin)
-                }
-            }
-        )
+        .navigationDestination(isPresented: $showDetailView) {
+            DetailLoadingView(coin: $selectedCoin)
+        }
     }
 }
 

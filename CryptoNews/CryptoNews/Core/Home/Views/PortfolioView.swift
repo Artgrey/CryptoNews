@@ -123,7 +123,7 @@ extension PortfolioView {
 
     private var trailingNavBarButtons: some View {
         HStack(spacing: 10) {
-            Image(systemName: "checkmark")
+            Image.systemImages.checkmark
                 .opacity(showCheckMark ? 1.0 : 0.0)
             Button(action: {
                 saveButtonPressed()

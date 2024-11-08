@@ -10,6 +10,7 @@ import SwiftUI
 
 extension Image {
     static let appImages = AppImages()
+    static let systemImages = SystemImages()
 }
 
 struct AppImages {
@@ -17,4 +18,8 @@ struct AppImages {
     let coindecko = Image("coingecko")
     let logo = Image("logo")
     let portfolio = Image("portfolio")
+}
+
+struct SystemImages {
+    let checkmark = "checkmark".systemImage
 }

@@ -23,7 +23,7 @@ struct CryptoNewsApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                NavigationView {
+                NavigationStack {
                     HomeView()
                         .toolbar(.hidden, for: .navigationBar)
                 }
