@@ -12,9 +12,9 @@ class DetailViewModel: ObservableObject {
 
     @Published var overiviewStatistics: [StatisticModel] = []
     @Published var additionalStatistics: [StatisticModel] = []
-    @Published var coinDescription: String? = nil
-    @Published var websiteURL: String? = nil
-    @Published var redditURL: String? = nil
+    @Published var coinDescription: String?
+    @Published var websiteURL: String?
+    @Published var redditURL: String?
 
     @Published var coin: CoinModel
     private let coinDetailService: CoinDetailDataService
@@ -45,14 +45,15 @@ class DetailViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func mapDataToStatistics(details: CoinDetailModel?, coin: CoinModel) -> (overview: [StatisticModel], additional: [StatisticModel]) {
+    private func mapDataToStatistics(details: CoinDetailModel?,
+                                     coin: CoinModel) -> (overview: [StatisticModel], additional: [StatisticModel]) {
         // overview
         let overviewArray: [StatisticModel] = createOverviewArray(coin: coin)
 
         // additional
         let additionalArray: [StatisticModel] = createAdditionalOverview(details: details, coin: coin)
-       
-        return (overviewArray,additionalArray)
+
+        return (overviewArray, additionalArray)
     }
 
     func createOverviewArray(coin: CoinModel) -> [StatisticModel] {
@@ -63,7 +64,9 @@ class DetailViewModel: ObservableObject {
 
         let marketCap = "$" + (coin.marketCap?.formattedWithAbbreviations() ?? "")
         let marketCapPercentChange = coin.marketCapChangePercentage24H
-        let marketCapStat = StatisticModel(title: "Market Capitalization", value: marketCap, percentageChange: marketCapPercentChange)
+        let marketCapStat = StatisticModel(title: "Market Capitalization",
+                                           value: marketCap,
+                                           percentageChange: marketCapPercentChange)
 
         let rank = "\(coin.rank)"
         let rankStat = StatisticModel(title: "Rank", value: rank)
@@ -86,11 +89,15 @@ class DetailViewModel: ObservableObject {
 
         let priceChange = coin.priceChange24H?.asCurrencyWith6Decimals() ?? "n/a"
         let pricePercentChange2 = coin.priceChangePercentage24H
-        let priceChangeStat = StatisticModel(title: "24h Price Change", value: priceChange, percentageChange: pricePercentChange2)
+        let priceChangeStat = StatisticModel(title: "24h Price Change",
+                                             value: priceChange,
+                                             percentageChange: pricePercentChange2)
 
         let marketCapChange = "$" + (coin.marketCapChange24H?.formattedWithAbbreviations() ?? "")
         let marketCapPercentChange2 = coin.marketCapChangePercentage24H
-        let marketCapChangeStat = StatisticModel(title: "24h Market Cap Change", value: marketCapChange, percentageChange: marketCapPercentChange2)
+        let marketCapChangeStat = StatisticModel(title: "24h Market Cap Change",
+                                                 value: marketCapChange,
+                                                 percentageChange: marketCapPercentChange2)
 
         let blockTime = details?.blockTimeInMinutes ?? 0
         let blockTimeString = blockTime == 0 ? "n/a" : "\(blockTime)"

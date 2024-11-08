@@ -71,7 +71,7 @@ class PortfolioDataService {
     private func save() {
         do {
             try container.viewContext.save()
-        } catch let error{
+        } catch let error {
             print("Error saving to Core Data. \(error)")
         }
     }

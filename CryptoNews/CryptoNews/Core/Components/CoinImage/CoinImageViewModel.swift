@@ -11,7 +11,7 @@ import Combine
 
 class CoinImageViewModel: ObservableObject {
 
-    @Published var image: UIImage? = nil
+    @Published var image: UIImage?
     @Published var isLoading: Bool = false
 
     private let coin: CoinModel

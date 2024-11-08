@@ -120,7 +120,8 @@ class HomeViewModel: ObservableObject {
         }
     }
 
-    private func mapAllCoinToPortfolioCoins(allCoins: [CoinModel], portfolioEntities: [PortfolioEntity]) -> [CoinModel] {
+    private func mapAllCoinToPortfolioCoins(allCoins: [CoinModel],
+                                            portfolioEntities: [PortfolioEntity]) -> [CoinModel] {
         allCoins
             .compactMap { coin -> CoinModel? in
                 guard let entity = portfolioEntities.first(where: { $0.coinID == coin.id}) else { return nil }
@@ -128,17 +129,22 @@ class HomeViewModel: ObservableObject {
             }
     }
 
-    private func mapGlobalMarketData(marketDataModel: MarketDataModel?, portfolioCoins: [CoinModel]) -> [StatisticModel] {
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?,
+                                     portfolioCoins: [CoinModel]) -> [StatisticModel] {
         var stats: [StatisticModel] = []
-        guard let data = marketDataModel else { return stats }
-        let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange:  data.marketCapChangePercentage24HUsd)
+        guard let data = marketDataModel else {
+            return stats
+        }
+        let marketCap = StatisticModel(title: "Market Cap",
+                                       value: data.marketCap,
+                                       percentageChange: data.marketCapChangePercentage24HUsd)
 
         let volume = StatisticModel(title: "24h Volume", value: data.volume)
         let btcDominance = StatisticModel(title: "BTN Dominance", value: data.btcDominance)
 
         let portfolioValue = portfolioCoins.map { $0.currentHoldingsValue }.reduce(0, +)
-       
-        let previuosValue = 
+
+        let previuosValue =
             portfolioCoins
                 .map { coin -> Double in
                     let currentValue = coin.currentHoldingsValue

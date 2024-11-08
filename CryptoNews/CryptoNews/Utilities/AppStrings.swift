@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable line_length
 struct AppStrings {
     static let settings = "Settings"
     static let developer = "Developer"
@@ -25,3 +26,4 @@ struct AppStrings {
     static let swiftfulThinkingDesc = "This app was made by following a @SwiftfulThinking course  on Youtube. It uses MVVM Architecture, Combine, and CoreData!"
     static let swiftfullThinkingTitle = "Subscribe on Youtube 😁"
 }
+// swiftlint:enable line_length

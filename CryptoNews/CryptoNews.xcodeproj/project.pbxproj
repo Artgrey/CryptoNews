@@ -171,6 +171,13 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		B11FCCE82CDE40B900EAFC5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B16FBBF42CDB6A9800E0389F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +256,7 @@
 				B1D791D82CC80EC2008BC9D9 /* CryptoNewsTests */,
 				B1D791E22CC80EC2008BC9D9 /* CryptoNewsUITests */,
 				B1D791C62CC80EC0008BC9D9 /* Products */,
+				B11FCCE82CDE40B900EAFC5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -439,8 +447,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				B11FCCEC2CDE40C600EAFC5A /* PBXTargetDependency */,
 			);
 			name = CryptoNews;
+			packageProductDependencies = (
+			);
 			productName = CryptoNews;
 			productReference = B1D791C52CC80EC0008BC9D9 /* CryptoNews.app */;
 			productType = "com.apple.product-type.application";
@@ -629,6 +640,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B11FCCEC2CDE40C600EAFC5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B11FCCEB2CDE40C600EAFC5A /* SwiftLintBuildToolPlugin */;
+		};
 		B1D791D72CC80EC2008BC9D9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B1D791C42CC80EC0008BC9D9 /* CryptoNews */;
@@ -950,6 +965,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B11FCCEB2CDE40C600EAFC5A /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B11FCCE12CDE27E500EAFC5A /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B11FCCE52CDE3A1400EAFC5A /* PortfolioContainer.xcdatamodeld */ = {

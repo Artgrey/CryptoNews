@@ -22,7 +22,7 @@ struct DetailLoadingView: View {
 
 struct DetailView: View {
 
-    @StateObject var vm: DetailViewModel
+    @StateObject var viewModel: DetailViewModel
     @State private var showFullDescription: Bool = false
     private let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -31,13 +31,13 @@ struct DetailView: View {
     private var spacing: CGFloat = 30
 
     init(coin: CoinModel) {
-        _vm = StateObject(wrappedValue:DetailViewModel(coin: coin))
+        _viewModel = StateObject(wrappedValue: DetailViewModel(coin: coin))
     }
 
     var body: some View {
         ScrollView {
             VStack {
-                ChartView(coin: vm.coin)
+                ChartView(coin: viewModel.coin)
                     .padding(.vertical)
                 VStack(spacing: 20) {
                     overviewTitle
@@ -53,7 +53,7 @@ struct DetailView: View {
             }
         }
         .background(Color.theme.background.ignoresSafeArea())
-        .navigationTitle(vm.coin.name)
+        .navigationTitle(viewModel.coin.name)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 navigationBarTrailingItems
@@ -72,10 +72,10 @@ extension DetailView {
 
     private var navigationBarTrailingItems: some View {
         HStack {
-            Text(vm.coin.symbol.uppercased())
+            Text(viewModel.coin.symbol.uppercased())
                 .font(.headline)
                 .foregroundStyle(Color.theme.secondaryText)
-            CoinImageView(coin: vm.coin)
+            CoinImageView(coin: viewModel.coin)
                 .frame(width: 25, height: 25)
         }
     }
@@ -98,7 +98,7 @@ extension DetailView {
 
     private var descriptionTitle: some View {
         ZStack {
-            if let coinDescription = vm.coinDescription, !coinDescription.isEmpty {
+            if let coinDescription = viewModel.coinDescription, !coinDescription.isEmpty {
                 VStack(alignment: .leading) {
                     Text(coinDescription)
                         .lineLimit(showFullDescription ? nil : 3)
@@ -126,7 +126,7 @@ extension DetailView {
                   spacing: spacing,
                   pinnedViews: [],
                   content: {
-            ForEach(vm.overiviewStatistics) { stat in
+            ForEach(viewModel.overiviewStatistics) { stat in
                 StatisticView(stat: stat)
             }
         })
@@ -138,7 +138,7 @@ extension DetailView {
                   spacing: spacing,
                   pinnedViews: [],
                   content: {
-            ForEach(vm.additionalStatistics) { stat in
+            ForEach(viewModel.additionalStatistics) { stat in
                 StatisticView(stat: stat)
             }
         })
@@ -146,11 +146,11 @@ extension DetailView {
 
     private var websiteSection: some View {
         VStack(alignment: .leading, spacing: 20) {
-            if let websiteString = vm.websiteURL, let url = URL(string: websiteString) {
+            if let websiteString = viewModel.websiteURL, let url = URL(string: websiteString) {
                 Link("Website", destination: url)
             }
 
-            if let redditString = vm.redditURL, let url = URL(string: redditString) {
+            if let redditString = viewModel.redditURL, let url = URL(string: redditString) {
                 Link("Reddit", destination: url)
             }
         }

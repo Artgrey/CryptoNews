@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PortfolioView: View {
 
-    @EnvironmentObject private var vm: HomeViewModel
+    @EnvironmentObject private var viewModel: HomeViewModel
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedCoin: CoinModel? = nil
+    @State private var selectedCoin: CoinModel?
     @State private var quantityText: String = ""
     @State private var showCheckMark: Bool = false
 
@@ -19,7 +19,7 @@ struct PortfolioView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    SearchBarView(searchText: $vm.searchText)
+                    SearchBarView(searchText: $viewModel.searchText)
                     coinLogoList
 
                     if selectedCoin != nil {
@@ -37,7 +37,7 @@ struct PortfolioView: View {
                     trailingNavBarButtons
                 }
             }
-            .onChange(of: vm.searchText) { _, value in
+            .onChange(of: viewModel.searchText) { _, value in
                 if value == "" {
                     removeSelectedCoin()
                 }
@@ -56,7 +56,7 @@ extension PortfolioView {
     private var coinLogoList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 10) {
-                ForEach(vm.searchText.isEmpty ? vm.portfolioCoins : vm.allCoins) { coin in
+                ForEach(viewModel.searchText.isEmpty ? viewModel.portfolioCoins : viewModel.allCoins) { coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 75)
                         .padding(4)
@@ -78,10 +78,10 @@ extension PortfolioView {
 
     private func updateSelectedCoin(coin: CoinModel) {
         selectedCoin = coin
-        if let portfolioCoin = vm.portfolioCoins.first(where: { $0.id == coin.id }),
+        if let portfolioCoin = viewModel.portfolioCoins.first(where: { $0.id == coin.id }),
            let amount = portfolioCoin.currentHoldings {
             quantityText = "\(amount)"
-        } else  {
+        } else {
             quantityText = ""
         }
 
@@ -127,9 +127,9 @@ extension PortfolioView {
                 .opacity(showCheckMark ? 1.0 : 0.0)
             Button(action: {
                 saveButtonPressed()
-            }) {
+            }, label: {
                 Text("Save".uppercased())
-            }
+            })
             .opacity(
                 (selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantityText)) ? 1.0 : 0.0)
         }
@@ -137,13 +137,13 @@ extension PortfolioView {
     }
 
     private func saveButtonPressed() {
-        guard 
+        guard
             let coin = selectedCoin,
             let amount = Double(quantityText)
         else { return }
 
         // save to portfolio
-        vm.updatePortfolio(coin: coin, amount: amount)
+        viewModel.updatePortfolio(coin: coin, amount: amount)
         // show checkmark
         withAnimation(.easeIn) {
             showCheckMark = true
@@ -163,6 +163,6 @@ extension PortfolioView {
 
     private func removeSelectedCoin() {
         selectedCoin = nil
-        vm.searchText = ""
+        viewModel.searchText = ""
     }
 }

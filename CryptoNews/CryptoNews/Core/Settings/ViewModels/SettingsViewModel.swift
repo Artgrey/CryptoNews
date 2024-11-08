@@ -15,7 +15,7 @@ class SettingsViewModel {
         header: AppStrings.swiftfulThinking,
         image: Image.appImages.logo,
         description: AppStrings.swiftfulThinkingDesc,
-        links: [SettingsSectionLink(url: AppURLs.youtube.url, 
+        links: [SettingsSectionLink(url: AppURLs.youtube.url,
                                     title: AppStrings.swiftfullThinkingTitle)]
     )
 
@@ -23,7 +23,7 @@ class SettingsViewModel {
         header: AppStrings.coinGecko,
         image: Image.appImages.coindecko,
         description: AppStrings.coinGeckoDesc,
-        links: [SettingsSectionLink(url: AppURLs.coindecko.url, 
+        links: [SettingsSectionLink(url: AppURLs.coindecko.url,
                                     title: AppStrings.coinGeckoTitle)]
     )
 
@@ -34,7 +34,7 @@ class SettingsViewModel {
         links: [
             SettingsSectionLink(url: AppURLs.linkedIn.url,
                                 title: AppStrings.LinkedInTitle),
-            SettingsSectionLink(url: AppURLs.github.url, 
+            SettingsSectionLink(url: AppURLs.github.url,
                                 title: AppStrings.githubTitle)
         ]
     )

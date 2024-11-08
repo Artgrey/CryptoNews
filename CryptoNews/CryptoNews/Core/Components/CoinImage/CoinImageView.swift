@@ -9,19 +9,19 @@ import SwiftUI
 
 struct CoinImageView: View {
 
-    @StateObject var vm: CoinImageViewModel
+    @StateObject var viewModel: CoinImageViewModel
 
     init(coin: CoinModel) {
-        _vm = StateObject(wrappedValue: CoinImageViewModel(coin: coin))
+        _viewModel = StateObject(wrappedValue: CoinImageViewModel(coin: coin))
     }
 
     var body: some View {
         ZStack {
-            if let image = vm.image {
+            if let image = viewModel.image {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
-            } else if vm.isLoading {
+            } else if viewModel.isLoading {
                 ProgressView()
             } else {
                 Image(systemName: "questionmark")

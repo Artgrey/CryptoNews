@@ -8,16 +8,17 @@
 import Foundation
 import Combine
 
+// swiftlint:disable line_length
 extension AppURLs {
-
     static func details(id: String) -> String {
         return base + "/coins/\(id)?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false"
     }
 }
+// swiftlint:enable line_length
 
 class CoinDetailDataService {
 
-    @Published var coinDetails: CoinDetailModel? = nil
+    @Published var coinDetails: CoinDetailModel?
     var coinDetailSubscription: AnyCancellable?
     let coin: CoinModel
 
