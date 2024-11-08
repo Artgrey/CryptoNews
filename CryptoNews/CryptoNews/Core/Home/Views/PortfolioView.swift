@@ -37,11 +37,11 @@ struct PortfolioView: View {
                     trailingNavBarButtons
                 }
             }
-            .onChange(of: vm.searchText, perform: { value in
+            .onChange(of: vm.searchText) { _, value in
                 if value == "" {
                     removeSelectedCoin()
                 }
-            })
+            }
         }
     }
 }
@@ -67,7 +67,7 @@ extension PortfolioView {
                         }
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(selectedCoin?.id == coin.id ? Color.theme.green : Color.clear)
+                                .stroke(selectedCoin?.id == coin.id ? Color.theme.high : Color.clear)
                         )
                 }
             }
